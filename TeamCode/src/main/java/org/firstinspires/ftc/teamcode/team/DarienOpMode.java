@@ -16,7 +16,7 @@ public class DarienOpMode extends LinearOpMode {
     public DcMotor omniMotor1; // right front
     public DcMotor omniMotor2; // left rear
     public DcMotor omniMotor3; // right rear
-    public DcMotor slideMotor1;
+    public DarienMotor slideMotor1;
     public DcMotor tiltMotor;
 
 
@@ -55,14 +55,13 @@ public class DarienOpMode extends LinearOpMode {
         omniMotor1 = initializeMotor("omniMotor1");
         omniMotor2 = initializeMotor("omniMotor2");
         omniMotor3 = initializeMotor("omniMotor3");
-        slideMotor1 = initializeMotor("slideMotor1");
+        slideMotor1 = new DarienMotor(hardwareMap, "slideMotor1", DcMotor.Direction.REVERSE,DcMotor.ZeroPowerBehavior.BRAKE);
         tiltMotor = initializeMotor("tiltMotor");
 
         omniMotor0.setDirection(DcMotor.Direction.REVERSE);
         omniMotor1.setDirection(DcMotor.Direction.FORWARD);
         omniMotor2.setDirection(DcMotor.Direction.FORWARD);
         omniMotor3.setDirection(DcMotor.Direction.REVERSE);
-        slideMotor1.setDirection(DcMotor.Direction.REVERSE);
         tiltMotor.setDirection(DcMotor.Direction.REVERSE);
 
         telemetry.addLine("FTC 19168 Robot Initialization Done!");
