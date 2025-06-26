@@ -34,9 +34,9 @@ public class DarienMotor {
      * @param encoderMaxStartSlowdown the number of encoder ticks from which to slow down the motor when approaching the upper limit, such as 100.
      */
     public void runMotorWithEncoderStops(float driverInput, String MotorName, double defaultMaxPower, int encoderMin, int encoderMinStartSlowdown, int encoderMax, int encoderMaxStartSlowdown) {
-        telemetry.addData(MotorName.concat(" Driver Input"), driverInput);
-        telemetry.addData(MotorName.concat(" Current Position"), motor.getCurrentPosition());
-        telemetry.addData("stop",0);
+//        telemetry.addData(MotorName.concat(" Driver Input"), driverInput);
+//        telemetry.addData(MotorName.concat(" Current Position"), motor.getCurrentPosition());
+//        telemetry.addData("stop",0);
         int minTolerance = 10, maxTolerance = 0;
 
         // Ensure input power is between 0 and 1.

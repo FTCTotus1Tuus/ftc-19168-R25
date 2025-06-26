@@ -55,7 +55,7 @@ public class DarienOpMode extends LinearOpMode {
         omniMotor1 = initializeMotor("omniMotor1");
         omniMotor2 = initializeMotor("omniMotor2");
         omniMotor3 = initializeMotor("omniMotor3");
-        slideMotor1 = new DarienMotor(hardwareMap, "slideMotor1", DcMotor.Direction.REVERSE,DcMotor.ZeroPowerBehavior.BRAKE);
+        slideMotor1 = new DarienMotor(hardwareMap, "slideMotor1", DcMotor.Direction.FORWARD,DcMotor.ZeroPowerBehavior.BRAKE);
         tiltMotor = initializeMotor("tiltMotor");
 
         omniMotor0.setDirection(DcMotor.Direction.REVERSE);
