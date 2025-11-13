@@ -24,14 +24,14 @@ public class MyFirstAuto extends DarienOpModeAuto {
 
         initControls();
         waitForStart();
-        if (isStopRequested()) return;
 
         double[] tiltMotorPID = {0, 0, 0};
         double[] slideMotorPID = {0, 0, 0};
         tiltMotorHelper = new MotorHelper(telemetry);
         slideMotorHelper = new MotorHelper(telemetry);
 
-        while (this.opModeIsActive()) {
+        while (opModeIsActive()) {
+            if (isStopRequested()) return;
             // Goal: Drive to test our odometry tuning and test all mechanisms
             //Move forward back left right, extend slide and raise it, then drop the slide and retract it
 

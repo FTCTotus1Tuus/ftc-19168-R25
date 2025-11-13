@@ -343,6 +343,7 @@ public class DarienOpModeAuto extends DarienOpMode {
 
 
         while (looping) {
+            if (isStopRequested()) return;
             updatePosition(); // VERY NESSCESSARY WHENEVER WE ARE MOVING
 
             telemetry.addData("x: ", errorX);
