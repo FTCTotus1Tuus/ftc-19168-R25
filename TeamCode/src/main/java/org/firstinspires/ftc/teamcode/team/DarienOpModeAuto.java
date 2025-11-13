@@ -22,7 +22,7 @@ import java.util.List;
 @Config
 public class DarienOpModeAuto extends DarienOpMode {
 
-    public WebcamName webcam1;
+    //    public WebcamName webcam1;
     public VisionPortal visionPortal;
     public ImageProcess imageProcess;
     public AprilTagProcessor aprilTag;
@@ -505,8 +505,10 @@ public class DarienOpModeAuto extends DarienOpMode {
         aprilTag = AprilTagProcessor.easyCreateWithDefaults();
 
         // Create the vision portal the easy way.
+        /*
         visionPortal = VisionPortal.easyCreateWithDefaults(
                 hardwareMap.get(WebcamName.class, "Webcam 1"), aprilTag);
+        */
     }   // end method initAprilTag()
 
     private void telemetryAprilTag() {
