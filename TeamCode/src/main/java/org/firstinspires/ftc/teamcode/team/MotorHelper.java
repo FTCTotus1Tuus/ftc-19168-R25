@@ -22,14 +22,27 @@ public class MotorHelper {
      * Returns the power required to maintain the motor encoder at a desired set point.
      * Written by Vivan, Mario, and Aiden
      */
-    public double[] pid(DcMotor Motor, double pgain, double igain, double setpoint, double pdutyMin, double pdutyMax, double idutyMin, double idutyMax, double iduty, double powerMin, double powerMax, double gain, double bottomStop, double topStop, float Control, boolean isTelemetryShown) {
+    public double[] pid(DcMotor Motor, double pgain, double pgain2, double igain, double setpoint, double pdutyMin, double pdutyMax, double idutyMin, double idutyMax, double iduty, double powerMin, double powerMax, double gain, double bottomStop, double topStop, float Control, boolean isTelemetryShown) {
         double[] returnArray;
 
-        this.clampedsetpoint = clamp(setpoint - Control * gain, bottomStop, topStop);
+        //If the motor is going up
+        if (Control <= 0) {
+            this.clampedsetpoint = clamp(setpoint + Control * gain, bottomStop, topStop);
 
-        this.pduty = clamp(pgain * (this.clampedsetpoint - Motor.getCurrentPosition()), pdutyMin, pdutyMax);
-        this.iduty = clamp(igain * (this.clampedsetpoint - Motor.getCurrentPosition()) + iduty, idutyMin, idutyMax);
-        this.power = clamp(this.pduty + this.iduty, powerMin, powerMax);
+            this.pduty = clamp(pgain * (this.clampedsetpoint - Motor.getCurrentPosition()), pdutyMin, pdutyMax);
+            this.iduty = clamp(igain * (this.clampedsetpoint - Motor.getCurrentPosition()) + iduty, idutyMin, idutyMax);
+            this.power = clamp(this.pduty + this.iduty, powerMin, powerMax);
+        }
+
+        //If the motor is going down
+        if (Control > 0) {
+            this.clampedsetpoint = clamp(setpoint + Control * gain, bottomStop, topStop);
+
+            this.pduty = clamp(pgain2 * (this.clampedsetpoint - Motor.getCurrentPosition()), pdutyMin, pdutyMax);
+            this.iduty = clamp(igain * (this.clampedsetpoint - Motor.getCurrentPosition()) + iduty, idutyMin, idutyMax);
+            this.power = clamp(this.pduty + this.iduty, powerMin, powerMax);
+        }
+
 
         // kills motor when it should be at rest
         if (setpoint <= bottomStop + 10 && Motor.getCurrentPosition() <= bottomStop + 10) {
@@ -39,7 +52,7 @@ public class MotorHelper {
         if (isTelemetryShown) {
             telemetry.addData("Pduty: ", pduty);
             telemetry.addData("Iduty: ", iduty);
-            telemetry.addData("Motor Encoder: ", Motor.getCurrentPosition());
+            telemetry.addData("Motor Encoder " + Motor.getDeviceName() + ": ", Motor.getCurrentPosition());
             telemetry.addData("Set point: ", setpoint);
             telemetry.addData("Clamped Set Point: ", clampedsetpoint);
             telemetry.update();

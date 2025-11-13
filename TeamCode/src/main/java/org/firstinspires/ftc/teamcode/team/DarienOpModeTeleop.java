@@ -10,8 +10,6 @@ public class DarienOpModeTeleop extends DarienOpMode {
 
     public double[] direction = {0.0, 0.0};
     public double rotation;
-    public static double CLOSED_CLAW = 0.96;
-    public static double OPEN_CLAW = 0.7;
     public static double rtvoltage = 0.01;
 
     @Override
