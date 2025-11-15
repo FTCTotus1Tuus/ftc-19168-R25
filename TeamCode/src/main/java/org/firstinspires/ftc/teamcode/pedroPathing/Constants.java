@@ -16,7 +16,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.team.DarienOpModeTeleop;
 
 public class Constants {
-    public static FollowerConstants followerConstants = new FollowerConstants();
+    public static FollowerConstants followerConstants = new FollowerConstants()
+            .mass(6.804) // in kgs = 15.0 lbs
+            .forwardZeroPowerAcceleration(-33.59231077961965)
+            .lateralZeroPowerAcceleration(-60.16265743142146);
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 1, 1);
 
@@ -46,5 +49,7 @@ public class Constants {
             .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
             .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
             .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
+            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
+            .xVelocity(63.6090554064653)
+            .yVelocity(55.893118310162414);
 }
